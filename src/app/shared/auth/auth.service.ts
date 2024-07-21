@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 // import { BehaviorSubject } from 'rxjs';
-//import { routes } from '../routes/routes';
+import { routes } from '../routes/routes';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +38,12 @@ export class AuthService {
         return true;
     }
     return false;
+  }
+
+  logout(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("authenticated");
+    this.router.navigate([routes.login])
   }
 }
